@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dreams</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="DreamApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="header" >
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#/welcome">
+                <img src="images/logo.png" alt="">
+            </a>
+
+          </div>
+
+          <div class="collapse navbar-collapse" id="js-navbar-collapse" ng-controller="LoginCtrl">
+            <ul class="nav navbar-nav navbar-right" ng-cloak >
+              <li ng-show="isAuthenticated()" ng-click="logout()" title="Logout">
+                  <a ng-href="#/"><i ng-class="{'text-success': isAuthenticated()}" class="glyphicon glyphicon-off"></i></a>
+              </li>
+              <li ng-hide="isAuthenticated()" title="Login">
+                  <a ui-sref="login"><i ng-class="{'text-danger': !isAuthenticated()}" class="glyphicon glyphicon-off"></i></a>
+              </li>
+            </ul>
+            <p ng-cloak class="navbar-text navbar-right" ng-if="isAuthenticated()">{{ getAccount().name }}</p>
+          </div>
+        </div>
+      </div>
+        <div class="container" ng-controller="MainCtrl" ng-cloak>
+            <p class="text-muted">
+                <span class="glyphicon glyphicon-th-large" ></span> {{ info }}
+            </p>
+        </div>
+    </div>
+
+    <div class="container" ng-cloak >
+        <div class="col-sm-4 row" ng-if="isAuthenticated()" >
+            <div class="list-group">
+                <a ui-sref="dream" class="list-group-item">
+                    <i class="glyphicon glyphicon-cloud-upload"></i>
+                    Dreams
+                </a>
+                <a ui-sref="auditing" class="list-group-item">
+                    <i class="glyphicon glyphicon-paste"></i>
+                    Auditing
+                </a>
+                <a ui-sref="members" class="list-group-item">
+                    <i class="glyphicon glyphicon-thumbs-up"></i>
+                    Members
+                </a>
+                <a ui-sref="profile" class="list-group-item">
+                    <i class="glyphicon glyphicon-user"></i>
+                    Profile
+                </a>
+                <a ui-sref="about" class="list-group-item">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                    About
+                </a>
+            </div>
+        </div>
+        <div ng-class="{'col-sm-8': isAuthenticated()}">
+            <div ui-view ></div>
+        </div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <p><span class="glyphicon glyphicon-heart"></span>
+            from the <a href="http://owen.com.br">owen-it</a> team
+            <iframe class="btn" src="https://ghbtns.com/github-btn.html?user=owen-it&amp;repo=laravel-auditing&amp;type=watch&amp;count=true" height="35" title="Star on GitHub"></iframe>
+        </p>
+      </div>
+    </div>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/angular-ui-sortable/sortable.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/query-string/query-string.js"></script>
+    <script src="bower_components/angular-oauth2/dist/angular-oauth2.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/dream.js"></script>
+    <script src="scripts/services/dream.js"></script>
+    <script src="scripts/filters/date.js"></script>
+    <script src="scripts/services/login.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/services/loginmodal.js"></script>
+    <script src="scripts/controllers/auditing.js"></script>
+    <script src="scripts/controllers/welcome.js"></script>
+    <script src="scripts/controllers/member.js"></script>
+    <script src="scripts/services/auditing.js"></script>
+    <script src="scripts/services/members.js"></script>
+    <script src="scripts/services/account.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
