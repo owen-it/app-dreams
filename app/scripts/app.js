@@ -26,7 +26,7 @@ angular
         'angular-oauth2'
     ])
     .constant('API', {
-        'uri': 'https://dreams-.herokuapp.com'
+        'uri': '/'
     })
     .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
         localStorageServiceProvider.setPrefix('dream');
