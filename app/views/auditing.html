@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Auditing</h3>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="">
+                <input type="text" class="form-control" id="searchMember" ng-model="searchLog" placeholder="Search for...">
+            </div>
+        </div>
+    </div>
+    <table class="table" >
+        <tbody>
+            <tr ng-repeat="log in logs | filter: searchLog">
+                <td class="col-sm-1" >
+                    <img ng-src="http://www.gravatar.com/avatar/{{ log.user.gravatar || 'default' }}" width="25px" class="" />
+                </td>
+                <td>
+                    <div class="text-left">{{ log.custom_message }} {{ log.user.name }}
+                    <div collapse="!log.open">
+                        <hr/>
+                        <blockquote>
+                            <p ng-repeat="custom in log.custom_fields">
+                                <cite title="Source Title">{{ custom }}</cite>
+                            </p>
+                            <footer>
+                                {{ log.type }} in {{ log.created_at | dateInstance | date:'dd MMM yyyy ' }}
+                                <i class="glyphicon glyphicon-time"></i>
+                            </footer>
+                        </blockquote>
+                    </div>
+                    <div class="text-right text-muted" style="float: right">
+                        {{ log.elapsed_time }}
+                        <i class="glyphicon text-muted" ng-class="{'glyphicon-chevron-up': log.open, 'glyphicon-menu-down': !log.open, 'text-success': log.open}" ng-click="log.open = !log.open"></i>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+

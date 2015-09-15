@@ -1,0 +1,105 @@
+<div class="panel panel-default"  ng-show="isCreatingDream">
+    <div class="panel-heading">
+        <h3 class="panel-title">Add a dream</h3>
+    </div>
+    <div class="panel-body">
+        <form  ng-submit="submitCreate()" accept-charset="UTF-8" role="form">
+            <div class="row">
+
+                <div class="form-group col-lg-12" ng-class="{'has-error': errorCreateContent}">
+                    <textarea rows="8" ng-model="formData.content" class="form-control" placeholder="Your dream just there..." name="content" id="content" required></textarea>
+                    <small class="help-block">{{ errorCreateContent }}</small>
+                </div>
+
+                <div class="form-group col-lg-12 text-center">
+                    <input ng-click="setCreatingDream(false)" class="btn btn-default" type="button" value="Cancel">
+                    <input class="btn btn-default" type="submit" value="Send">
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+<div class="list-group" ng-if="!isCreatingDream">
+    <div class="list-group-item left clearfix">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for..." ng-model="dream.search">
+              <span class="input-group-btn">
+                <button ng-click="paginate()" class="btn btn-default" type="button">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+                <button ng-click="setCreatingDream(true)" class="btn btn-default" type="button">or new</button>
+              </span>
+        </div>
+    </div>
+    <div class="list-group-item left clearfix" ng-repeat="dream in data ">
+
+        <div class="chat-body clearfix">
+            <div class="header" style="margin-bottom: 10px">
+                <strong class="primary-font">{{ dream.user.name }}</strong>
+
+                <small ng-if="dream.is_owner">
+                    <a ng-click="edit(dream.id, $index)" href>
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </a>
+                    <a ng-click="destroy(dream.id, $index)" href>
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </small>
+
+
+                <small class="pull-right text-muted">
+                    <i class="glyphicon glyphicon-time"></i> {{ dream.elapsed_time }}
+                </small>
+
+            </div>
+            <span class="chat-img pull-left col-sm-2 row">
+                <img ng-src="http://www.gravatar.com/avatar/{{ dream.user.gravatar || 'default' }}" width="45" alt="User Avatar" class="img-circle" />
+            </span>
+            <p class="col-sm-10">{{ dream.content }}</p>
+        </div>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <ul class="pager pager-sm">
+                <li ng-show="previous" class="previous"><a href="#dream" ng-click="paginate('previous')"><span aria-hidden="true">&larr;</span> Newer</a></li>
+                <li ng-show="next" class="next"><a href="#dream" ng-click="paginate('next')"> Older<span aria-hidden="true">&rarr;</span></a></li>
+            </ul>
+        </li>
+    </ul>
+    <nav>
+
+    </nav>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Change your dream...</h4>
+            </div>
+            <div class="modal-body">
+
+                <form ng-submit="submitChange()" accept-charset="UTF-8" role="form">
+                    <div class="row">
+
+                        <div class="form-group col-lg-12" ng-class="{'has-error': errorContent}">
+                            <textarea rows="8" ng-model="content" class="form-control" name="content" id="content" required></textarea>
+                            <small class="help-block">{{ errorContent}}</small>
+                        </div>
+
+                        <div class="form-group col-lg-12 text-center">
+                            <button type="button" class="btn btn-default"type="submit"  data-dismiss="modal">Close</button>
+                            <input class="btn btn-default" type="submit" value="Save changes">
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

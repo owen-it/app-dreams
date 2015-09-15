@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h4>Please sign in <a ui-sref="register"> or register</a></h4>
+                </div>
+                <div class="panel-body">
+                    <form ng-submit="in()" role="form" name="form">
+                        <div ng-show="isAlert" class="alert alert-danger" role="alert">
+                            These credentials do not match our records.
+                        </div>
+                        <fieldset>
+                            <div class="form-group">
+                                <input ng-model="user.email" class="form-control" placeholder="Email" name="email" type="text" id="email" required>
+                                <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
+                            </div>
+                            <div class="form-group">
+                                <input ng-model="user.password" class="form-control" placeholder="Password" name="password" type="password" value="" id="password" required>
+                                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input ng-model="formData.memory" name="memory" type="checkbox" value="1">Remember me
+                                    <!--<a href="password/email"> or forgoten my password!</a>-->
+                                </label>
+                            </div>
+                            <input  ng-disabled="form.$invalid || form.vm.dataLoading" class="btn btn-default btn-success" type="submit" value="Send">
+                            <a ui-sref="register" class="btn btn-link">Register</a>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

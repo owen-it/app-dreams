@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h4>Register</h4>
+                </div>
+                <div class="panel-body">
+                    <form ng-submit="register()" name="form" role="form">
+                        <div ng-show="message.isAlert" class="alert alert-{{ message.type }}" role="alert">
+                            {{ message.content }}
+                        </div>
+                        <fieldset>
+                            <div class="form-group">
+                                <input ng-model="user.name" class="form-control" placeholder="Name" name="name" type="text" id="name" required>
+                                <span ng-show="form.name.$dirty && form.name.$error.required" class="help-block">Name is required</span>
+                            </div>
+                            <div class="form-group">
+                                <input ng-model="user.email" class="form-control" placeholder="Email" name="email" type="text" id="email" required>
+                                <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
+                            </div>
+                            <div class="form-group">
+                                <input ng-model="user.password" class="form-control" placeholder="Password" name="password" type="password" value="" id="password" required>
+                                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+                            </div>
+
+                            <input ng-disabled="form.$invalid || form.vm.dataLoading" class="btn btn-lg btn-primary" type="submit" value="Send">
+                            <a ui-sref="login" class="btn btn-link">Cancel</a>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

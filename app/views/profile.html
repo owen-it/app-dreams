@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Profile</h3>
+    </div>
+    <div class="panel-body">
+        <span class="chat-img pull-left col-sm-4" >
+            <img ng-src="http://www.gravatar.com/avatar/{{ account.gravatar || 'default' }}" width="100" alt="User Avatar" class="img-circle" />
+        </span>
+        <p class="col-sm-6">
+            <i class="glyphicon glyphicon-sunglasses text-muted"></i> <strong class="primary-font">{{ account.name }}</strong><br/>
+            <i class="glyphicon glyphicon-envelope text-muted"></i> <a href="mailto:#">{{ account.email }}</a><br/>
+            <i class="glyphicon glyphicon-time text-muted"></i> Joined on {{ account.created_at | dateInstance | date:'dd MMM yy' }}
+        </p>
+    </div>
+</div>

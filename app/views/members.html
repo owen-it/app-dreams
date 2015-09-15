@@ -1,0 +1,31 @@
+
+
+<div class="list-group">
+    <div class="list-group-item left clearfix">
+        <div class="form-group">
+            <div class="">
+                <input type="text" class="form-control" id="searchMember" ng-model="searchMember" placeholder="Search for...">
+            </div>
+        </div>
+    </div>
+    <div class="list-group-item left clearfix" ng-repeat="member in members | filter: searchMember">
+
+        <div class="chat-body clearfix">
+            <div class="header" style="margin-bottom: 10px">
+                <span class=" text-muted"><i ng-show="member.admin">Admin</i><i ng-hide="member.admin">Member</i></span>
+                <small class="pull-right text-muted">
+                    <i class="glyphicon glyphicon-time"></i> Joined on {{ member.created_at | dateInstance | date:'dd MMM yy' }}
+                </small>
+            </div>
+            <span class="chat-img pull-left col-sm-2 row" >
+                <img ng-src="http://www.gravatar.com/avatar/{{ member.gravatar || 'default' }}" width="45" alt="User Avatar" class="img-circle" />
+            </span>
+            <p class="col-sm-10">
+                <i class="glyphicon glyphicon-sunglasses text-muted"></i> <strong class="primary-font">{{ member.name }}</strong><br/>
+                <i class="glyphicon glyphicon-envelope text-muted"></i> <a href="mailto:#">{{ member.email }}</a><br/>
+            </p>
+        </div>
+    </div>
+</div>
+
+
